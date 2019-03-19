@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.tpdm_u2_practica2_angelcruz">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity_ConsultarSeguro"></activity>
+        <activity android:name=".MainActivity_PrincipalSeguro" />
+        <activity android:name=".MainActivity_ConsultarPropietario" />
+        <activity android:name=".MainActivity_InsertarSeguro" />
+        <activity android:name=".MainActivity_PrincipalPropietario" />
+        <activity android:name=".MainActivity_InsertarPropietario" />
+        <activity android:name=".MainActivity_Principal">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
