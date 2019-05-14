@@ -9,20 +9,20 @@ import android.util.Log;
 
 public class Propietario {
     private BaseDatos base;
-    private int idPropietario;
+    private String telefonoPropietario;
     private String nombrePropietario;
     private String domicilioPropietario;
-    private String telefonoPropietario;
     private String fechaPropietario;
     protected String error;
 
-    public Propietario(Activity activity){base = new BaseDatos(activity, "ASEGURADORA_ANEL",null,1); }
+    public Propietario(Activity activity){
+        base = new BaseDatos(activity, "ASEGURADORA",null,1);
+    }
 
-    public Propietario(int idP, String nombreP, String domicilioP, String telefonoP, String fechaP){
-        this.idPropietario=idP;
+    public Propietario(String telefonoP, String nombreP, String domicilioP, String fechaP){
+        this.telefonoPropietario = telefonoP;
         this.nombrePropietario = nombreP;
         this.domicilioPropietario = domicilioP;
-        this.telefonoPropietario = telefonoP;
         this.fechaPropietario = fechaP;
     }
 
@@ -30,63 +30,65 @@ public class Propietario {
         try {
             SQLiteDatabase transaccionInsertar = base.getWritableDatabase();
             ContentValues datos = new ContentValues();
+            datos.put("TELEFONO", propietario.getTelefonoPropietario());
             datos.put("NOMBRE", propietario.getNombrePropietario());
             datos.put("DOMICILIO", propietario.getDomicilioPropietario());
-            datos.put("TELEFONO", propietario.getTelefonoPropietario());
             datos.put("FECHA", propietario.getFechaPropietario());
 
-            long resultado = transaccionInsertar.insert("PROPIETARIO", "IDPROPIETARIO", datos);
+            long resultado = transaccionInsertar.insert("PROPIETARIO", null, datos);
             transaccionInsertar.close();
             if (resultado == -1) {
-                return false; //no se pudo hacer el insert
-            }
-        } catch (SQLiteException e) {
+                return false;
+            }//if
+        }//try
+        catch (SQLiteException e) {
             error = e.getMessage();
             Log.e("Error SQL ",e.getMessage());
             return false;
-        }
+        }//catch
         return true;
-    }
+    }//insertar
 
     public boolean eliminar(Propietario propietario) {
         try {
             SQLiteDatabase transaccionEliminar = base.getWritableDatabase();
-            long resultado = transaccionEliminar.delete("PROPIETARIO", "NOMBRE=?", new String[]{"" + propietario.getNombrePropietario()});
+            long resultado = transaccionEliminar.delete("PROPIETARIO", "TELEFONO=?", new String[]{"" + propietario.getTelefonoPropietario()});
             transaccionEliminar.close();
 
             if (resultado < 0) {
-                return false;//no se elimino nada
-            }
-        } catch (SQLiteException e) {
+                return false;
+            }//if
+        }//try
+        catch (SQLiteException e) {
             error = e.getMessage();
             return false;
-        }
+        }//catch
         return true;
-    }
+    }//eliminar
 
     public boolean actualizar(Propietario propietario){
         try{
             SQLiteDatabase transaccionActualizar = base.getWritableDatabase();
             ContentValues datos = new ContentValues();
-            //datos.put("IDPROPIETARIO", propietario.getIdPropietario());
+            datos.put("TELEFONO", propietario.getTelefonoPropietario());
             datos.put("NOMBRE", propietario.getNombrePropietario());
             datos.put("DOMICILIO", propietario.getDomicilioPropietario());
-            datos.put("TELEFONO", propietario.getTelefonoPropietario());
             datos.put("FECHA", propietario.getFechaPropietario());
 
-            String dato[]={propietario.getIdPropietario()+""};
-            long resultado = transaccionActualizar.update("PROPIETARIO",datos,"NOMBRE=?",dato);
+            String dato[]={propietario.getTelefonoPropietario()+""};
+            long resultado = transaccionActualizar.update("PROPIETARIO",datos,"TELEFONO=?",dato);
             transaccionActualizar.close();
 
             if(resultado<0){
-                return false; //no se actualizo nada
-            }
-        }catch(SQLiteException e){
+                return false;
+            }//if
+        }//try
+        catch(SQLiteException e){
             e.printStackTrace();
             return false;
-        }
+        }//catch
         return true;
-    }
+    }//actualizar
 
     public Propietario[] consultar(){
         try{
@@ -96,39 +98,42 @@ public class Propietario {
                 Propietario[] propietarios = new Propietario[c.getCount()];
                 int posicion = 0;
                 do {
-                    propietarios[posicion] = new Propietario(c.getInt(0), c.getString(1),c.getString(2),c.getString(3),c.getString(4));
+                    propietarios[posicion] = new Propietario(c.getString(0), c.getString(1),c.getString(2),c.getString(3));
                     posicion++;
-                } while (c.moveToNext());
+                }//do
+                while (c.moveToNext());
                 return propietarios;
-            }
-        }catch(SQLiteException e){
+            }//if
+        }//try
+        catch(SQLiteException e){
             e.printStackTrace();
             return null;
-        }
+        }//catch
         return null;
-    }
+    }//consultar
 
     public Propietario consultar(String dato){
         try{
             SQLiteDatabase db=base.getReadableDatabase();
-            Cursor c=db.rawQuery("SELECT * FROM PROPIETARIO WHERE NOMBRE=?",new String[]{dato.toString()});
+            Cursor c=db.rawQuery("SELECT * FROM PROPIETARIO WHERE TELEFONO=?",new String[]{dato.toString()});
             if (c.moveToFirst()) {
-                Propietario propietario = new Propietario(c.getInt(0), c.getString(1),c.getString(2),c.getString(3),c.getString(4));
+                Propietario propietario = new Propietario(c.getString(0), c.getString(1),c.getString(2),c.getString(3));
                 return propietario;
-            }
-        }catch(SQLiteException e){
+            }//if
+        }//try
+        catch(SQLiteException e){
             e.printStackTrace();
             return null;
-        }
+        }//catch
         return null;
+    }//consultar
+
+    public String getTelefonoPropietario() {
+        return telefonoPropietario;
     }
 
-    public int getIdPropietario() {
-        return idPropietario;
-    }
-
-    public void setIdPropietario(int id) {
-        this.idPropietario = id;
+    public void setTelefonoPropietario(String telefono) {
+        this.telefonoPropietario = telefono;
     }
 
     public String getNombrePropietario() {
@@ -145,14 +150,6 @@ public class Propietario {
 
     public void setDomicilioPropietario(String domicilio) {
         this.domicilioPropietario = domicilio;
-    }
-
-    public String getTelefonoPropietario() {
-        return telefonoPropietario;
-    }
-
-    public void setTelefonoPropietario(String telefono) {
-        this.telefonoPropietario = telefono;
     }
 
     public String getFechaPropietario() {

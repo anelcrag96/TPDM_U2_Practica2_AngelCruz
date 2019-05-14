@@ -9,7 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class MainActivity_InsertarPropietario extends AppCompatActivity {
-    EditText nombre, domicilio, telefono, fecha;
+    EditText telefono, nombre, domicilio, fecha;
     Button insertar;
 
     @Override
@@ -17,25 +17,24 @@ public class MainActivity_InsertarPropietario extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main__insertar_propietario);
 
-        nombre=findViewById(R.id.txtNombrePropietario);
-        domicilio=findViewById(R.id.txtDomicilioPropietario);
-        telefono=findViewById(R.id.txtTelefonoPropietario);
-        fecha=findViewById(R.id.txtFechaPropietario);
-        insertar=findViewById(R.id.btnInsetarPropietario
-        );
+        telefono=findViewById(R.id.txt_TelefonoPropietario);
+        nombre=findViewById(R.id.txt_NombrePropietario);
+        domicilio=findViewById(R.id.txt_DomicilioPropietario);
+        fecha=findViewById(R.id.txt_FechaPropietario);
+        insertar=findViewById(R.id.btn_InsetarPropietario);
 
         insertar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Propietario propietario = new Propietario(MainActivity_InsertarPropietario.this);
-                if (propietario.insertar(new Propietario(1,nombre.getText().toString(), domicilio.getText().toString(), telefono.getText().toString(), fecha.getText().toString()))) {
-                    Toast.makeText(MainActivity_InsertarPropietario.this, "Propietario insertado exitosamente", Toast.LENGTH_LONG).show();
+                if (propietario.insertar(new Propietario(telefono.getText().toString(),nombre.getText().toString(), domicilio.getText().toString(), fecha.getText().toString()))){
+                    Toast.makeText(MainActivity_InsertarPropietario.this, "Se inserto a "+nombre.getText().toString()+" exitosamente", Toast.LENGTH_LONG).show();
                     Intent i = new Intent(MainActivity_InsertarPropietario.this, MainActivity_PrincipalPropietario.class);
                     startActivity(i);
                     finish();
                 }//if
                 else {
-                    Toast.makeText(MainActivity_InsertarPropietario.this, "No se pudo insertar", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity_InsertarPropietario.this, "No se pudo insertar a "+nombre.getText().toString(), Toast.LENGTH_LONG).show();
                 }//else
             }//onClick
         });

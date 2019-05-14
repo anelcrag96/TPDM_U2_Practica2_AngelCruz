@@ -11,60 +11,56 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/lblTitulo"
+        android:id="@+id/lbl__Titulo"
         android:text="Consultar propietarios"
         android:textSize="30dp"
         android:textAlignment="center"
+        android:layout_marginBottom="20dp"
+        android:textColor="#000"
         />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/lblNombre"
+        android:id="@+id/lbl__NombrePropietario"
         android:text="Nombre"
-        android:textSize="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/txtNombre"
-        android:textSize="20dp"
+        android:id="@+id/txt__NombrePropietario"
         android:hint="Nombre del propietario"
         />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/lblDomicilio"
+        android:id="@+id/lbl__DomicilioPropietario"
         android:text="Domicilio:"
-        android:textSize="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/txtDomicilio"
-        android:textSize="20dp"
+        android:id="@+id/txt__DomicilioPropietario"
         android:hint="Domicilio del propietario"
         />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/lblTelefon"
+        android:id="@+id/lbl__TelefonoPropietario"
         android:text="Telefono:"
-        android:textSize="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/txtTelefonoPropietario"
-        android:textSize="20dp"
+        android:id="@+id/txt__TelefonoPropietario"
         android:hint="Telefono del propietario"
         android:inputType="number"
         />
@@ -72,48 +68,43 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/lblFecha"
+        android:id="@+id/lbl__FechaPropietario"
         android:text="Fecha:"
-        android:textSize="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/txtFechaPropietario"
-        android:textSize="20dp"
+        android:id="@+id/txt__FechaPropietario"
         android:inputType="date"
-        android:hint="DD/MM/AAAA"
+        android:hint="AAAA/MM/DD"
         />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/btnActualizarPropietario"
+        android:id="@+id/btn__ActualizarPropietario"
         android:text="Actualizar propietario"
-        android:textSize="20dp"
         android:background="@color/colorPrimary"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/btnEliminarPropietario"
+        android:id="@+id/btn__EliminarPropietario"
         android:text="Eliminar propietario"
-        android:textSize="20dp"
         android:background="@color/colorPrimary"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/btnRegresar"
+        android:id="@+id/btn__RegresarPropietario"
         android:text="Regresar"
-        android:textSize="20dp"
         android:background="@color/colorPrimary"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         />
 </LinearLayout>

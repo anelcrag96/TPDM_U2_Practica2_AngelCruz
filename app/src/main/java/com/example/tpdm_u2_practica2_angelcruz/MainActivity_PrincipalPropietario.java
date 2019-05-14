@@ -40,16 +40,15 @@ public class MainActivity_PrincipalPropietario extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
                 AlertDialog.Builder alerta=new AlertDialog.Builder(MainActivity_PrincipalPropietario.this);
                 alerta.setTitle("Alerta")
-                        .setMessage("¿Desea modificar/eliminar el seguro seleccionado?")
+                        .setMessage("¿Desea modificar/eliminar el propietario seleccionado?")
                         .setPositiveButton("SI", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 Intent datos=new Intent(MainActivity_PrincipalPropietario.this,MainActivity_ConsultarPropietario.class);
-                                datos.putExtra("id",lista_propietarios[position].getIdPropietario());
-                                datos.putExtra("nombre",lista_propietarios[position].getNombre());
-                                datos.putExtra("dom",lista_propietarios[position].getDomicilio());
-                                datos.putExtra("tel",lista_propietarios[position].getTelefono());
-                                datos.putExtra("fecha",lista_propietarios[position].getFecha());
+                                datos.putExtra("nombre",lista_propietarios[position].getNombrePropietario());
+                                datos.putExtra("telefono",lista_propietarios[position].getTelefonoPropietario());
+                                datos.putExtra("domicilio",lista_propietarios[position].getDomicilioPropietario());
+                                datos.putExtra("fecha",lista_propietarios[position].getFechaPropietario());
                                 startActivity(datos);
                                 finish();
                             }
@@ -60,7 +59,7 @@ public class MainActivity_PrincipalPropietario extends AppCompatActivity {
     }
 
     protected void onStart() {
-        super.onStart();//se ejecuta cuando se ve la pantalla
+        super.onStart();
         Propietario propietario = new Propietario(this);
         Propietario vector[] = propietario.consultar();
         lista_propietarios=vector;
@@ -73,8 +72,8 @@ public class MainActivity_PrincipalPropietario extends AppCompatActivity {
         }else {
             telefono= new String[vector.length];
             for (int i=0; i<vector.length; i++){
-                Propietario temp = vector[i];
-                telefono[i] = temp.getTelefono();
+                Propietario temporal = vector[i];
+                telefono[i] = temporal.getTelefonoPropietario();
             }
             lista_p.setEnabled(true);
         }

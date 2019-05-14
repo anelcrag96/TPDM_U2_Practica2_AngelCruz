@@ -13,17 +13,20 @@ public class BaseDatos extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE PROPIETARIO (" +
-                    "IDPROPIETARIO VARCHAR(20) PRIMARY KEY NOT NULL," +
+                    "TELEFONO VARCHAR(20) PRIMARY KEY NOT NULL," +
                     "NOMBRE VARCHAR(200) NOT NULL," +
-                    "TELEFONO VARCHAR(200)," +
+                    "DOMICILIO VARCHAR(200),"+
                     "FECHA DATE)");
+
         db.execSQL("CREATE TABLE SEGURO (" +
-                    "IDSEGURO VARCHAR(200) PRIMARY KEY NOT NULL," +
+                    "IDSEGURO INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
                     "DESCRIPCION VARCHAR(200) NOT NULL," +
                     "FECHA DATE," +
-                    "TIPO FLOAT," +
-                    "TELEFONO VARCHAR(200) NOT NULL)");
+                    "TIPO VARCHAR(20)," +
+                    "TELEFONO VARCHAR(20)  NOT NULL, FOREIGN KEY (TELEFONO) REFERENCES PROPIETARIO(TELEFONO))");
+
     }
+
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {

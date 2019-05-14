@@ -9,7 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class MainActivity_ConsultarPropietario extends AppCompatActivity {
-    EditText idPropietario, nombre, domicilio, telefono, fechaPropietario, descripcion, fechaSeguro, tipo;
+    EditText telefonoPropietario, nombrePropietario, domicilioPropietario, fechaPropietario, descripcionSeguro, fechaSeguro, tipoSeguro;
     Button actualizar, eliminar, regresar;
     Propietario propietario;
 
@@ -18,23 +18,24 @@ public class MainActivity_ConsultarPropietario extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main__consultar_propietario);
 
-        nombre=findViewById(R.id.txtNombre);
-        domicilio=findViewById(R.id.txtDomicilio);
-        telefono=findViewById(R.id.txtTelefonoPropietario);
-        fechaPropietario=findViewById(R.id.txtFechaPropietario);
-        descripcion=findViewById(R.id.txtDescripcion);
-        fechaSeguro=findViewById(R.id.txtFechaSeguro);
-        tipo=findViewById(R.id.txtTipo);
-        actualizar=findViewById(R.id.btnActualizarPropietario);
-        eliminar=findViewById(R.id.btnEliminarPropietario);
-        regresar=findViewById(R.id.btnRegresarPropietario);
+        telefonoPropietario=findViewById(R.id.txt__TelefonoPropietario);
+        telefonoPropietario.setEnabled(false);
+        nombrePropietario=findViewById(R.id.txt__NombrePropietario);
+        domicilioPropietario=findViewById(R.id.txt__DomicilioPropietario);
+        fechaPropietario=findViewById(R.id.txt__FechaPropietario);
+        descripcionSeguro=findViewById(R.id.txt__DescripcionSeguro);
+        fechaSeguro=findViewById(R.id.txt__FechaSeguro);
+        tipoSeguro=findViewById(R.id.txt__TipoSeguro);
+        actualizar=findViewById(R.id.btn__ActualizarPropietario);
+        eliminar=findViewById(R.id.btn__EliminarPropietario);
+        regresar=findViewById(R.id.btn__RegresarPropietario);
 
         actualizar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Propietario p=new Propietario(MainActivity_ConsultarPropietario.this);
-                if (p.eliminar(propietario)){
-                    Toast.makeText(MainActivity_ConsultarPropietario.this,"Propietario eliminado exitosamente",Toast.LENGTH_LONG).show();
+                if (p.actualizar(new Propietario(telefonoPropietario.getText().toString(), nombrePropietario.getText().toString(), domicilioPropietario.getText().toString(), fechaPropietario.getText().toString()))){
+                    Toast.makeText(MainActivity_ConsultarPropietario.this,"Propietario actualizado exitosamente",Toast.LENGTH_LONG).show();
                     Intent i=new Intent(MainActivity_ConsultarPropietario.this,MainActivity_PrincipalPropietario.class);
                     startActivity(i);
                     finish();
@@ -48,9 +49,9 @@ public class MainActivity_ConsultarPropietario extends AppCompatActivity {
         eliminar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Propietario propietario=new Propietario(MainActivity_ConsultarPropietario.this);
-                if (propietario.actualizar(new Propietario(1,telefono.getText().toString(),nombre.getText().toString(),domicilio.getText().toString(),fechaSeguro.getText().toString()))){
-                    Toast.makeText(MainActivity_ConsultarPropietario.this,"Propietario actualizado exitosamente",Toast.LENGTH_LONG).show();
+                Propietario prop=new Propietario(MainActivity_ConsultarPropietario.this);
+                if (prop.eliminar(propietario)){
+                    Toast.makeText(MainActivity_ConsultarPropietario.this,"Propietario eliminado exitosamente",Toast.LENGTH_LONG).show();
                     Intent i=new Intent(MainActivity_ConsultarPropietario.this,MainActivity_PrincipalPropietario.class);
                     startActivity(i);
                     finish();
@@ -75,12 +76,12 @@ public class MainActivity_ConsultarPropietario extends AppCompatActivity {
         super.onStart();
         Bundle extras=getIntent().getExtras();
         if (extras != null) {
-            propietario=new Propietario(1,extras.getString("nombre"),extras.getString("domicilio"),extras.getString("telefono"),extras.getString("fecha"));
-            nombre.setText(propietario.getNombre());
-            domicilio.setText(propietario.getDomicilio());
-            fechaSeguro.setText(propietario.getFecha());
-            telefono.setText(propietario.getTelefono());
-        }
-    }
+            propietario=new Propietario(extras.getString("telefono"),extras.getString("nombre"),extras.getString("domicilio"),extras.getString("fecha"));
+            telefonoPropietario.setText(propietario.getTelefonoPropietario());
+            nombrePropietario.setText(propietario.getNombrePropietario());
+            domicilioPropietario.setText(propietario.getDomicilioPropietario());
+            fechaPropietario.setText(propietario.getFechaPropietario());
+        }//if
+    }//onStart
 
 }

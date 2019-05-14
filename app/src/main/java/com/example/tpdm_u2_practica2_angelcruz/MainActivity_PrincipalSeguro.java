@@ -24,7 +24,7 @@ public class MainActivity_PrincipalSeguro extends AppCompatActivity {
         setContentView(R.layout.activity_main__principal_seguro);
 
         lista_s=findViewById(R.id.ListSeguros);
-        regresar=findViewById(R.id.btnRegresarSeguros);
+        regresar=findViewById(R.id.btnRegresarSeguro);
 
         regresar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,11 +45,11 @@ public class MainActivity_PrincipalSeguro extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 Intent datos=new Intent(MainActivity_PrincipalSeguro.this,MainActivity_ConsultarSeguro.class);
-                                datos.putExtra("idseguro",lista_seguros[position].getIdseguro());
-                                datos.putExtra("des",lista_seguros[position].getDescripcion());
-                                datos.putExtra("fecha",lista_seguros[position].getFecha());
-                                datos.putExtra("tipo",lista_seguros[position].getTipo());
-                                datos.putExtra("telefono",lista_seguros[position].getTelefono());
+                                datos.putExtra("idseguro",lista_seguros[position].getIdSeguro());
+                                datos.putExtra("descripcion",lista_seguros[position].getDescripcionSeguro());
+                                datos.putExtra("fecha",lista_seguros[position].getFechaSeguro());
+                                datos.putExtra("tipo",lista_seguros[position].getTipoSeguro());
+                                datos.putExtra("telefono",lista_seguros[position].getTelefonoSeguro());
                                 startActivity(datos);
                                 finish();
                             }
@@ -60,7 +60,7 @@ public class MainActivity_PrincipalSeguro extends AppCompatActivity {
     }
 
     protected void onStart() {
-        super.onStart();//se ejecuta cuando se ve la pantalla
+        super.onStart();
         Seguro seguro = new Seguro(this);
         Seguro vector[] = seguro.consultar();
         lista_seguros=vector;
@@ -73,8 +73,8 @@ public class MainActivity_PrincipalSeguro extends AppCompatActivity {
         }else {
             descripcion= new String[vector.length];
             for (int i=0; i<vector.length; i++){
-                Seguro temp = vector[i];
-                descripcion[i] = temp.getDescripcion();
+                Seguro temporal = vector[i];
+                descripcion[i] = temporal.getDescripcionSeguro();
             }
             lista_s.setEnabled(true);
         }
@@ -91,9 +91,9 @@ public class MainActivity_PrincipalSeguro extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
-            case R.id.btnInsetarSeguro:
-                Intent inserta = new Intent(this,MainActivity_InsertarSeguro.class);
-                startActivity(inserta);
+            case R.id.insertar:
+                Intent insertar = new Intent(this,MainActivity_InsertarSeguro.class);
+                startActivity(insertar);
                 finish();
                 break;
         }

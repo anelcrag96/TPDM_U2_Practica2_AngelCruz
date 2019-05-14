@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="20dp"
+    android:padding="10dp"
     tools:context=".MainActivity_PrincipalPropietario">
 
     <TextView
@@ -13,15 +13,10 @@
         android:layout_height="wrap_content"
         android:id="@+id/lblTituloPropietario"
         android:text="Propietarios"
-        android:textSize="30dp"
+        android:textSize="25dp"
         android:textAlignment="center"
-        />
-
-    <ListView
-        android:id="@+id/ListPropietario"
-        android:layout_width="match_parent"
-        android:layout_height="575dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:textColor="#000"
         />
 
     <Button
@@ -29,8 +24,13 @@
         android:layout_height="wrap_content"
         android:id="@+id/btnRegresarPropietario"
         android:text="Regresar"
-        android:textSize="20dp"
         android:background="@color/colorPrimary"
-        android:layout_marginTop="20dp"
         />
+
+    <ListView
+        android:id="@+id/ListPropietario"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+
 </LinearLayout>

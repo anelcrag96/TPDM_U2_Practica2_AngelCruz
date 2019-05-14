@@ -16,7 +16,7 @@ public class Seguro {
     protected String error;
 
     public Seguro(Activity activity){
-        base = new BaseDatos(activity, "ASEGURADORA_ANEL",null,1);
+        base = new BaseDatos(activity, "ASEGURADORA",null,1);
     }
 
     public Seguro(int idS, String descripcionS, String fechaS, String tipoS, String telefonoS){
@@ -40,13 +40,14 @@ public class Seguro {
             transaccionInsertar.close();
             if (resultado < 0) {
                 return false; //no se pudo hacer el insert
-            }
-        } catch (SQLiteException e) {
+            }//if
+        }//try
+        catch (SQLiteException e) {
             error = e.getMessage();
             return false;
-        }
+        }//catch
         return true;
-    }
+    }//insertar
 
     public boolean eliminar(Seguro seguro) {
         try {
@@ -56,8 +57,9 @@ public class Seguro {
 
             if (resultado == 0) {
                 return false;//no se elimino nada
-            }
-        } catch (SQLiteException e) {
+            }//if
+        }//catch
+        catch (SQLiteException e) {
             error = e.getMessage();
             return false;
         }
@@ -75,15 +77,17 @@ public class Seguro {
             String dato[]={seguro.getIdSeguro()+""};
             long resultado = transaccionActualizar.update("SEGURO",datos,"IDSEGURO=?",dato);
             transaccionActualizar.close();
+
             if(resultado<0){
                 return false; //no se actualizo nada
-            }
-        }catch(SQLiteException e){
+            }//if
+        }//try
+        catch(SQLiteException e){
             e.printStackTrace();
             return false;
-        }
+        }//catch
         return true;
-    }
+    }//actualizar
 
     public Seguro[] consultar(){
         try{
@@ -95,16 +99,17 @@ public class Seguro {
                 do {
                     seguros[posicion] = new Seguro(c.getInt(0),c.getString(1),c.getString(2),c.getString(3),c.getString(4));
                     posicion++;
-                } while (c.moveToNext());
+                }//do
+                while (c.moveToNext());
                 return seguros;
-            }
-        }catch(SQLiteException e){
+            }//if
+        }//try
+        catch(SQLiteException e){
             e.printStackTrace();
             return null;
-        }
+        }//catch
         return null;
-    }
-
+    }//consultar
 
     public int getIdSeguro() {
         return idSeguro;

@@ -11,60 +11,55 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/lblTituloPropietario"
+        android:id="@+id/lbl_TituloPropietario"
         android:text="Datos generales propietario"
-        android:textSize="30dp"
+        android:textSize="25dp"
         android:textAlignment="center"
+        android:textColor="#000"
         />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/lblNombrePropietario"
+        android:id="@+id/lbl_NombrePropietario"
         android:text="Nombre"
-        android:textSize="20dp"
         android:layout_marginTop="20dp"
         />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/txtNombrePropietario"
-        android:textSize="20dp"
+        android:id="@+id/txt_NombrePropietario"
         android:hint="Nombre del propietario"
         />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/lblDomicilioPropietario"
+        android:id="@+id/lbl_DomicilioPropietario"
         android:text="Domicilio:"
-        android:textSize="20dp"
         android:layout_marginTop="20dp"
         />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/txtDomicilioPropietario"
-        android:textSize="20dp"
+        android:id="@+id/txt_DomicilioPropietario"
         android:hint="Domicilio del propietario"
         />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/lblTelefonPropietario"
+        android:id="@+id/lbl_TelefonoPropietario"
         android:text="Telefono:"
-        android:textSize="20dp"
         android:layout_marginTop="20dp"
         />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/txtTelefonoPropietario"
-        android:textSize="20dp"
+        android:id="@+id/txt_TelefonoPropietario"
         android:hint="Telefono del propietario"
         android:inputType="number"
         />
@@ -72,27 +67,24 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/lblFechaPropietario"
+        android:id="@+id/lbl_FechaPropietario"
         android:text="Fecha:"
-        android:textSize="20dp"
         android:layout_marginTop="20dp"
         />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/txtFechaPropietario"
-        android:textSize="20dp"
+        android:id="@+id/txt_FechaPropietario"
         android:inputType="date"
-        android:hint="DD/MM/AAAA"
+        android:hint="AAAA/MM/DD"
         />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/btnInsetarPropietario"
+        android:id="@+id/btn_InsetarPropietario"
         android:text="Insertar propietario"
-        android:textSize="20dp"
         android:background="@color/colorPrimary"
         android:layout_marginTop="20dp"
         />
